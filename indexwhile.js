@@ -30,7 +30,7 @@ const propina = prompt('¿Desea agregar propina?')
 if (propina == 'si') {
     (totalfinal = total * 1.1)
 } else {
-    (totalfinal = total * 1)
+    (totalfinal = total)
 }
 
 function siResumen() {
