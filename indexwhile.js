@@ -5,36 +5,63 @@ function instrucciones() {
 
 instrucciones()
 
+function Combo(nombre, caracteristicas, total) {
+    this.nombre = nombre.toUpperCase();
+    this.caracteristicas = caracteristicas;
+    this.total = parseFloat(total);
+}
+
+const vegano = new Combo("vegano", "hamburguesa de soya con papas y bebida", 3000);
+const carnivoro = new Combo("carnivoro", "hamburguesa de vacuno con papas y bebida", 3500);
+const vegetarian = new Combo("vegetarian", "hamburguesa de champiñones con papas y bebida", 2500);
+
+alert('Los menús disponibles son ' + (vegano.nombre + " CON " + vegano.caracteristicas  + " CUESTA " + vegano.total) + '-' + (carnivoro.nombre  + " CON " + carnivoro.caracteristicas  + " CUESTA " + carnivoro.total) + '-' +  (vegetarian.nombre  + " CON " + vegetarian.caracteristicas  + " CUESTA " + vegetarian.total))
+
 const numeroMesa = parseFloat(prompt('Ingrese número de mesa'))
 
-const platoEntrada = prompt('Nombre plato de entrada')
-const precioPlatoEntrada = parseFloat(prompt('Ingrese precio de plato de entrada'))
+class Menu{
+    constructor(nombre) {
+        this.nombre = prompt('Nombre de comensal')
+        this.combo = prompt('Nombre de combo')
+        this.precio = parseInt(prompt('Ingrese precio'))
+    }
+}
+const menus = [];
+let numeroPersonas = parseInt(prompt('Ingrese numero de personas'))
+for (let index = 0; index < numeroPersonas; index++) {
 
-const platoPrincipal = prompt('Nombre de plato principal')
-const precioPlatoPrincipal = parseFloat(prompt('Ingrese precio de plato principal'))
+    menus.push(new Menu("BART"));
+    for (const menu of menus){
+        console.log(menu.nombre);
+        console.log(menu.combo);
+        console.log(menu.precio);
 
-const ensalada = prompt('Ingrese nombre de la ensalada')
-const precioEnsalada = parseFloat(prompt('Ingrese precio de la ensalada'))
+        const suma = menus.reduce((previous, current) => {
+            return previous + current.precio;
+        }, 0);
+        console.log(suma)
+        alert('El total es ' + suma)
+    }
+}
 
-const bebestible = prompt('Ingrese nombre de bebestible consumido')
-const precioBebestible = parseFloat(prompt('Ingrese precio de bebestible'))
+// no pude colocar console.log(suma) en el if que viene a continuacion para que le sume agregue la propina del 10%, debe ser porque esta dentro del for o no?
 
-const postre = prompt('Ingrese nombre de postre')
-const precioPostre = parseFloat(prompt('Ingrese precio de postre'))
-
-total = (precioPlatoEntrada + precioPlatoPrincipal + precioEnsalada + precioBebestible + precioPostre)
+const ingreseTotal = (parseInt(prompt('Ingrese el total')))
 
 let totalfinal = 0
 
 const propina = prompt('¿Desea agregar propina?')
 if (propina == 'si') {
-    (totalfinal = total * 1.1)
+    (totalfinal = ingreseTotal * 1.1)
 } else {
-    (totalfinal = total)
+    (totalfinal = ingreseTotal)
 }
 
 function siResumen() {
-    alert('Mesa número ' + (numeroMesa) + ', ' + '-Plato entrada: ' + (platoEntrada) + ' $' + (precioPlatoEntrada) + ', ' + '-Plato Principal: ' + (platoPrincipal) + ' $' + (precioPlatoPrincipal) + ', ' + '-Plato Ensalada: ' + (ensalada) + ' $' + (precioEnsalada) + ', ' + '-Bebestible: ' + (bebestible) + ' $' + (precioBebestible) + ', ' + '-Postre: ' + (postre) + ' $' + (precioPostre) + '; El total asciende a $ ' + (parseInt(totalfinal)) + ' pesos argentinos')
+    for (const menu of menus){
+        comidaPedida = alert('Los menus pedidos fueron ' + menu.combo + ' de ' + menu.nombre + ' con un precio de ' + menu.precio)
+    }
+    alert('Siendo un total de ' + (parseInt(totalfinal)) + ' pesos argentinos')
 }
 
 function noResumen() {
